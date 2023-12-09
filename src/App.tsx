@@ -3,7 +3,7 @@ import "./App.css";
 import useAssistantApi from "./hooks/useAssistant";
 
 function App() {
-  const { data, submitObjects, loading, error } = useAssistantApi();
+  const { data, submitObjects, loading } = useAssistantApi();
   const [inputObject1, setInputObject1] = useState("");
   const [inputObject2, setInputObject2] = useState("");
   const [object1, setObject1] = useState("");
