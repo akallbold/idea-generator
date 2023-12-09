@@ -10,11 +10,7 @@ function App() {
   const [object2, setObject2] = useState("");
   const renderResults = () => {
     if (data) {
-      // console.log("the whole thing", data);
       console.log("data.data", data.data);
-      // console.log("data.body", data.body);
-      // console.log("data.options", data.options);
-      // console.log("data.response", data.response);
     }
   };
   renderResults();
@@ -46,7 +42,7 @@ function App() {
                 onClick={() => {
                   setObject1(inputObject1);
                   setObject2(inputObject2);
-                  submitObjects(object1, object2);
+                  submitObjects(inputObject1, inputObject2);
                   setInputObject1("");
                   setInputObject2("");
                 }}
@@ -64,10 +60,13 @@ function App() {
                 </p>
               )}
               {object1 && object2 && (
-                <p>
-                  {` Object 1 was: ${object1} \n
-                  Object 2 was ${object2} `}
-                </p>
+                <div>
+                  <span>{` Object 1 was: `}</span>
+                  <span className="font-bold">{`${object1}`}</span>
+                  <br />
+                  <span>{` Object 2 was: `}</span>
+                  <span className="font-bold">{`${object2}`}</span>
+                </div>
               )}
               {data && <p> data... </p>}
             </div>

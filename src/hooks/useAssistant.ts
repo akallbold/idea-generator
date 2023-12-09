@@ -9,6 +9,7 @@ const assistantConfig = {
   model: "gpt-4-1106-preview",
 };
 const apiKey = process.env.REACT_APP_OPENAI_API_KEY;
+const ideaGeneratorBackend = process.env.REACT_APP_IDEA_GENERATOR_BACKEND;
 
 const openai = new OpenAI({ apiKey, dangerouslyAllowBrowser: true });
 
@@ -44,20 +45,20 @@ const useAssistantApi = () => {
   const submitObjects = async (object1: string, object2: string) => {
     console.log("I'm here");
     setLoading(true);
-    const thread = await openai.beta.threads.create();
-    const message = await openai.beta.threads.messages.create(thread.id, {
-      role: "user",
-      content: `Object 1: ${object1}\nObject 2: ${object2}\n\n`,
-    });
-    if (assistant) {
-      const run = await openai.beta.threads.runs.create(thread.id, {
-        assistant_id: assistant.id,
-      });
-      const messages = await openai.beta.threads.messages.list(thread.id);
-      console.log({ messages });
-      setData(messages);
+    if (ideaGeneratorBackend) {
+      try {
+        const response = await fetch(ideaGeneratorBackend, {
+          method: "POST",
+          body: JSON.stringify({ object1, object2 }),
+        });
+        const data = await response.json();
+        setData(data);
+      } catch (err) {
+        setError(err);
+      } finally {
+        setLoading(false);
+      }
     }
-    setLoading(false);
   };
 
   return { data, loading, error, submitObjects };
