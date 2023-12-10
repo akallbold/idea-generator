@@ -44,27 +44,27 @@ function App() {
       <div className="card w-3/4 h-3/4 bg-white shadow-lg rounded-xl md:filter-none relative">
         <div className="card-top h-1/2 bg-no-repeat bg-contain bg-center"></div>
 
-        <div className="card-bottom h-1/2 flex-row" flex-row>
-          <div className="flex flex-col items-center w-1/2 mx-auto">
-            <div className="flex flex-row w-full justify-between">
+        <div className="card-bottom h-1/2 md:flex md:flex-row">
+          <div className="flex flex-col items-center w-full md:w-1/2 mx-auto">
+            <div className="flex flex-col md:flex-row w-full justify-between">
               <input
                 type="text"
                 placeholder="Object 1"
-                className="card-input rounded-xl w-6/12 m-1"
+                className="card-input rounded-xl w-full md:w-6/12 m-1"
                 value={inputObject1}
                 onChange={(e) => setInputObject1(e.target.value)}
               />
               <input
                 type="text"
                 placeholder="Object 2"
-                className="card-input rounded-xl w-6/12 m-1"
+                className="card-input rounded-xl w-full md:w-6/12 m-1"
                 value={inputObject2}
                 onChange={(e) => setInputObject2(e.target.value)}
               />
             </div>
             <div className="w-full mt-2">
               <button
-                className="btn card-button rounded-xl"
+                className="btn card-button rounded-xl w-full"
                 onClick={handleSubmit}
               >
                 Generate Idea
@@ -72,14 +72,9 @@ function App() {
             </div>
           </div>
 
-          <div className="w-1/2 flex-col">
-            <div className="flex-row">
-              {loading && (
-                <p>
-                  {` By combining a ${object1} and a ${object2} ChatGPT is
-                  thinking of something real good!`}
-                </p>
-              )}
+          <div className="flex flex-col items-center w-full md:w-1/2 mx-auto">
+            <div className="flex flex-col md:flex-row w-full">
+              {loading && <p>Loading...</p>}
               {object1 && object2 && (
                 <div>
                   <span>{` Object 1 was: `}</span>

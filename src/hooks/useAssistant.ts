@@ -6,7 +6,7 @@ const ideaGeneratorBackend = process.env.REACT_APP_IDEA_GENERATOR_BACKEND;
 const useAssistantApi = () => {
   const [data, setData] =
     useState<OpenAI.Beta.Threads.Messages.ThreadMessagesPage | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState<null | unknown>(null);
 
   const submitObjects = async (object1: string, object2: string) => {
