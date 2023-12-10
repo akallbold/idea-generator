@@ -67,7 +67,7 @@ function App() {
                 className="btn card-button rounded-xl w-full"
                 onClick={handleSubmit}
               >
-                Generate Idea
+                Generate Product
               </button>
             </div>
           </div>
@@ -80,8 +80,8 @@ function App() {
               {loading && <p>Loading...</p>}
               {!object1 && !object2 && (
                 <p className="m-1">
-                  Enter two objects on the left and press Generate Idea to watch
-                  Assistant API generate a new product idea!
+                  Enter two objects on the left and press Generate Product to
+                  watch Assistant API generate a new product idea!
                 </p>
               )}
               {object1 && object2 && (
