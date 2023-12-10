@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import useAssistantApi from "./hooks/useAssistant";
 
@@ -13,10 +13,34 @@ function App() {
       console.log("data.data", data.data);
     }
   };
+
+  const handleKeyPress = (event: any) => {
+    if (event.key === "Enter") {
+      handleSubmit();
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("keydown", handleKeyPress);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyPress);
+    };
+  }, []);
+
+  const handleSubmit = () => {
+    setObject1(inputObject1);
+    setObject2(inputObject2);
+    submitObjects(inputObject1, inputObject2);
+    setInputObject1("");
+    setInputObject2("");
+  };
+
   renderResults();
   return (
-    <div className="app-bg h-screen bg-cover bg-center relative backdrop-blur-lg">
-      <div className="card w-3/4 h-3/4 bg-white mx-auto relative top-1/2 transform -translate-y-1/2 shadow-lg">
+    <div className="h-screen flex items-center justify-center">
+      <div className="app-bg absolute top-0 left-0 w-full h-full bg-cover bg-center blur scale-120"></div>
+      <div className="card w-3/4 h-3/4 bg-white shadow-lg rounded-xl md:filter-none relative">
         <div className="card-top h-1/2 bg-no-repeat bg-contain bg-center"></div>
         <div className="card-bottom h-1/2 flex-row" flex-row>
           <div className="w-1/2 flex-col">
@@ -39,13 +63,7 @@ function App() {
             <div>
               <button
                 className="btn card-button rounded-xl"
-                onClick={() => {
-                  setObject1(inputObject1);
-                  setObject2(inputObject2);
-                  submitObjects(inputObject1, inputObject2);
-                  setInputObject1("");
-                  setInputObject2("");
-                }}
+                onClick={handleSubmit}
               >
                 Generate Idea
               </button>

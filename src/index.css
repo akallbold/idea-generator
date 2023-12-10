@@ -20,19 +20,15 @@ code {
   background-image: url("background.png");
   background-size: cover;
   background-position: center;
-  height: 100vh; /* Full viewport height 
-    filter: blur(10px); /* Adjust the blur intensity as needed */
+  height: 100vh;
 }
 
 .card {
-  background-color: #c1c4c7; /* To let the background show */
-  width: 75vw; /* 75% of the viewport width */
-  height: 75vh; /* 75% of the viewport height */
-  margin: auto; /* Center horizontally */
-  /* position: relative;
-  top: 50%; */
-  transform: translateY(-50%); /* Center vertically */
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* Example shadow */
+  background-color: #c1c4c7;
+  width: 75vw;
+  height: 75vh;
+  border-radius: 14px;
+  position: relative;
 }
 
 .card-top {
@@ -40,15 +36,17 @@ code {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 }
 
 .card-bottom {
-  background-color: #c1c4c7; /* Or any color you prefer */
+  background-color: #c1c4c7;
   display: flex;
-  /* flex-direction: column; */
   justify-content: center;
-  /* align-items: center; */
-  padding: 10px; /* Adjust padding as needed */
+  padding: 10px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
 
 .card-input {
