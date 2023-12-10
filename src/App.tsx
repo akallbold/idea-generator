@@ -42,25 +42,26 @@ function App() {
       <div className="app-bg absolute top-0 left-0 w-full h-full bg-cover bg-center blur scale-120"></div>
       <div className="card w-3/4 h-3/4 bg-white shadow-lg rounded-xl md:filter-none relative">
         <div className="card-top h-1/2 bg-no-repeat bg-contain bg-center"></div>
+
         <div className="card-bottom h-1/2 flex-row" flex-row>
-          <div className="w-1/2 flex-col">
-            <div className="flex-row">
+          <div className="flex flex-col items-center w-1/2 mx-auto">
+            <div className="flex flex-row w-full justify-between">
               <input
                 type="text"
                 placeholder="Object 1"
-                className="card-input rounded-xl"
+                className="card-input rounded-xl w-6/12 m-1"
                 value={inputObject1}
                 onChange={(e) => setInputObject1(e.target.value)}
               />
               <input
                 type="text"
                 placeholder="Object 2"
-                className="card-input rounded-xl"
+                className="card-input rounded-xl w-6/12 m-1"
                 value={inputObject2}
                 onChange={(e) => setInputObject2(e.target.value)}
               />
             </div>
-            <div>
+            <div className="w-full mt-2">
               <button
                 className="btn card-button rounded-xl"
                 onClick={handleSubmit}
@@ -69,6 +70,7 @@ function App() {
               </button>
             </div>
           </div>
+
           <div className="w-1/2 flex-col">
             <div className="flex-row">
               {loading && (
