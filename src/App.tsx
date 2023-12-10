@@ -44,13 +44,13 @@ function App() {
       <div className="card w-3/4 h-3/4 bg-white shadow-lg rounded-xl md:filter-none relative">
         <div className="card-top h-1/2 bg-no-repeat bg-contain bg-center"></div>
 
-        <div className="card-bottom h-1/2 md:flex md:flex-row">
-          <div className="flex flex-col items-center w-full md:w-1/2 mx-auto">
+        <div className="card-bottom h-1/2 flex flex-col md:flex-row">
+          <div className="left-div flex flex-col items-center w-full md:w-1/2 mx-auto">
             <div className="flex flex-col md:flex-row w-full justify-between">
               <input
                 type="text"
                 placeholder="Object 1"
-                className="card-input rounded-xl w-full md:w-6/12 m-1"
+                className="card-input rounded-xl w-full md:w-6/12 m-1 "
                 value={inputObject1}
                 onChange={(e) => setInputObject1(e.target.value)}
               />
@@ -72,9 +72,18 @@ function App() {
             </div>
           </div>
 
-          <div className="flex flex-col items-center w-full md:w-1/2 mx-auto">
+          <div
+            className="right-div flex flex-col items-center w-full md:w-1/2 mx-auto"
+            id="right-div"
+          >
             <div className="flex flex-col md:flex-row w-full">
               {loading && <p>Loading...</p>}
+              {!object1 && !object2 && (
+                <p className="m-1">
+                  Enter two objects on the left and press Generate Idea to watch
+                  Assistant API generate a new product idea!
+                </p>
+              )}
               {object1 && object2 && (
                 <div>
                   <span>{` Object 1 was: `}</span>
