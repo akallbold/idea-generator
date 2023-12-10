@@ -41,7 +41,7 @@ function App() {
   return (
     <div className="h-screen flex items-center justify-center">
       <div className="app-bg absolute top-0 left-0 w-full h-full bg-cover bg-center blur scale-120"></div>
-      <div className="card w-3/4 h-3/4 bg-white shadow-lg rounded-xl md:filter-none relative">
+      <div className="card w-3/4 h-3/4 bg-white shadow-2xl rounded-xl md:filter-none relative">
         <div className="card-top h-1/2 bg-no-repeat bg-contain bg-center"></div>
 
         <div className="card-bottom h-1/2 flex flex-col md:flex-row">
@@ -50,7 +50,7 @@ function App() {
               <input
                 type="text"
                 placeholder="Object 1"
-                className="card-input rounded-xl w-full md:w-6/12 m-1 "
+                className="card-input rounded-xl w-full md:w-6/12 m-1"
                 value={inputObject1}
                 onChange={(e) => setInputObject1(e.target.value)}
               />
@@ -64,7 +64,7 @@ function App() {
             </div>
             <div className="w-full mt-2">
               <button
-                className="btn card-button rounded-xl w-full"
+                className="btn card-button rounded-xl w-full font-bold"
                 onClick={handleSubmit}
               >
                 Generate Product
@@ -79,7 +79,7 @@ function App() {
             <div className="flex flex-col md:flex-row w-full">
               {loading && <p>Loading...</p>}
               {!object1 && !object2 && (
-                <p className="m-1">
+                <p className="m-1 text-white font-bold">
                   Enter two objects on the left and press Generate Product to
                   watch Assistant API generate a new product idea!
                 </p>
