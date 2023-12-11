@@ -77,7 +77,9 @@ function App() {
             id="right-div"
           >
             <div className="flex flex-col md:flex-row w-full">
-              {loading && <p>Loading...</p>}
+              {loading && (
+                <p className="m-1 text-white font-bold">Loading...</p>
+              )}
               {!object1 && !object2 && (
                 <p className="m-1 text-white font-bold">
                   Enter two objects on the left and press Generate Product to
@@ -85,7 +87,7 @@ function App() {
                 </p>
               )}
               {object1 && object2 && (
-                <div>
+                <div className="m-1 text-white font-bold">
                   <span>{` Object 1 was: `}</span>
                   <span className="font-bold">{`${object1}`}</span>
                   <br />
@@ -93,7 +95,7 @@ function App() {
                   <span className="font-bold">{`${object2}`}</span>
                 </div>
               )}
-              {data && <p> data... </p>}
+              {data && <p className="m-1 text-white font-bold"> Response! </p>}
             </div>
           </div>
         </div>
