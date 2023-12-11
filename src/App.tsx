@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import "./App.css";
 import useAssistantApi from "./hooks/useAssistant";
 
@@ -8,9 +8,9 @@ function App() {
   const [inputObject2, setInputObject2] = useState("");
   const [object1, setObject1] = useState("");
   const [object2, setObject2] = useState("");
-  const renderResults = () => {
+  const renderResults = (): ReactNode => {
     if (data) {
-      console.log("data", data);
+      return <span className="font-bold">{`${data}`}</span>;
     }
   };
 
@@ -37,7 +37,6 @@ function App() {
     setInputObject2("");
   };
 
-  renderResults();
   return (
     <div className="h-screen flex items-center justify-center">
       <div className="app-bg absolute top-0 left-0 w-full h-full bg-cover bg-center blur scale-120"></div>
@@ -95,7 +94,9 @@ function App() {
                   <span className="font-bold">{`${object2}`}</span>
                 </div>
               )}
-              {data && <p className="m-1 text-white font-bold"> Response! </p>}
+              {data && (
+                <p className="m-1 text-white font-bold">{renderResults()} </p>
+              )}
             </div>
           </div>
         </div>
