@@ -10,7 +10,7 @@ function App() {
   const [object2, setObject2] = useState("");
   const renderResults = () => {
     if (data) {
-      console.log("data.data", data.data);
+      console.log("data", data);
     }
   };
 

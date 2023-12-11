@@ -8,6 +8,12 @@ const things = [
   "toothbrush",
   "oil filter",
   "drivers license",
+  "remote control",
+  "iPad stand",
+  "cat tree",
+  "hair brush",
+  "soccer team",
+  "soda can",
 ];
 
 export default things;
