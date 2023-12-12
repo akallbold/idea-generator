@@ -9,6 +9,7 @@ function App() {
   const [inputObject2, setInputObject2] = useState<string | undefined>("");
   const [object1, setObject1] = useState<string | undefined>("");
   const [object2, setObject2] = useState<string | undefined>("");
+
   const renderResults = (): ReactNode => {
     console.log({ data });
     if (data) {
