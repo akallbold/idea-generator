@@ -10,7 +10,6 @@ const useAssistantApi = () => {
   const [error, setError] = useState<null | unknown>(null);
 
   const submitObjects = async (object1: string, object2: string) => {
-    console.log("I'm here");
     setLoading(true);
     if (ideaGeneratorBackend) {
       try {
