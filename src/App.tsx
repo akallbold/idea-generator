@@ -118,10 +118,10 @@ function App() {
               )}
               {object1 && object2 && (
                 <div className="m-1 text-white font-bold">
-                  <span>{` Object 1 was: `}</span>
+                  <span>{` Object 1 is: `}</span>
                   <span className="font-bold">{`${object1}`}</span>
                   <br />
-                  <span>{` Object 2 was: `}</span>
+                  <span>{` Object 2 is: `}</span>
                   <span className="font-bold">{`${object2}`}</span>
                 </div>
               )}
