@@ -1,14 +1,16 @@
 import { ReactNode, useEffect, useState } from "react";
 import "./App.css";
 import useAssistantApi from "./hooks/useAssistant";
+import things from "./randomObjects";
 
 function App() {
   const { data, submitObjects, loading } = useAssistantApi();
-  const [inputObject1, setInputObject1] = useState("");
-  const [inputObject2, setInputObject2] = useState("");
-  const [object1, setObject1] = useState("");
-  const [object2, setObject2] = useState("");
+  const [inputObject1, setInputObject1] = useState<string | undefined>("");
+  const [inputObject2, setInputObject2] = useState<string | undefined>("");
+  const [object1, setObject1] = useState<string | undefined>("");
+  const [object2, setObject2] = useState<string | undefined>("");
   const renderResults = (): ReactNode => {
+    console.log({ data });
     if (data) {
       return <span className="font-bold">{`${data}`}</span>;
     }
@@ -32,9 +34,30 @@ function App() {
   const handleSubmit = () => {
     setObject1(inputObject1);
     setObject2(inputObject2);
-    submitObjects(inputObject1, inputObject2);
-    setInputObject1("");
-    setInputObject2("");
+    if (inputObject1 && inputObject2) {
+      submitObjects(inputObject1, inputObject2);
+      setInputObject1("");
+      setInputObject2("");
+    }
+  };
+  const handleRandomSubmit = () => {
+    let randomObject1;
+    let randomObject2;
+    while (randomObject1 === randomObject2) {
+      randomObject1 = randomObjectPicker();
+      randomObject2 = randomObjectPicker();
+    }
+
+    setObject1(randomObject1);
+    setObject2(randomObject2);
+    if (randomObject1 && randomObject2) {
+      submitObjects(randomObject1, randomObject2);
+      setInputObject1("");
+      setInputObject2("");
+    }
+  };
+  const randomObjectPicker = () => {
+    return things[Math.floor(Math.random() * things.length)];
   };
 
   return (
@@ -67,6 +90,14 @@ function App() {
                 onClick={handleSubmit}
               >
                 Generate Product
+              </button>
+            </div>
+            <div className="w-full mt-2">
+              <button
+                className="btn card-button rounded-xl w-full font-bold"
+                onClick={handleRandomSubmit}
+              >
+                Generate a Product For Me
               </button>
             </div>
           </div>
