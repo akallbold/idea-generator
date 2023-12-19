@@ -14,6 +14,8 @@ const things = [
   "hair brush",
   "soccer team",
   "soda can",
+  "pill",
+  "robot",
 ];
 
 export default things;

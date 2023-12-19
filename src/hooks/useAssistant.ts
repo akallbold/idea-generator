@@ -38,8 +38,6 @@ const useAssistantApi = () => {
       // @ts-ignore
       return msg.role === "assistant";
     })[0];
-    console.log({ assistantResponse });
-
     // @ts-ignore
     return assistantResponse.content[0].text.value;
   };

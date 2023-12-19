@@ -1,7 +1,8 @@
-import { ReactNode, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import useAssistantApi from "./hooks/useAssistant";
 import things from "./randomObjects";
+import Loader from "./Loader";
 
 function App() {
   const { data, setData, submitObjects, loading, error, setError } =
@@ -11,13 +12,6 @@ function App() {
   const [object1, setObject1] = useState<string | undefined>("");
   const [object2, setObject2] = useState<string | undefined>("");
 
-  const renderResults = (): ReactNode => {
-    console.log({ data });
-    if (data) {
-      return <span className="font-bold">{`${data}`}</span>;
-    }
-  };
-
   const handleReset = (): void => {
     setData(null);
     setError(null);
@@ -26,7 +20,6 @@ function App() {
     setInputObject1("");
     setInputObject2("");
   };
-
   const handleKeyPress = (event: any) => {
     if (event.key === "Enter") {
       handleSubmit();
@@ -72,7 +65,6 @@ function App() {
   const randomObjectPicker = () => {
     return things[Math.floor(Math.random() * things.length)];
   };
-  console.log("error on app page", error);
   return (
     <div className="h-screen flex items-center justify-center">
       <div className="app-bg absolute top-0 left-0 w-full h-full bg-cover bg-center blur scale-120"></div>
@@ -80,75 +72,84 @@ function App() {
         <div className="card-top h-1/2 bg-no-repeat bg-contain bg-center"></div>
 
         <div className="card-bottom h-1/2 flex flex-col md:flex-row">
-          <div className="left-div flex flex-col items-center w-full md:w-1/2 mx-auto">
-            <div className="flex flex-col md:flex-row w-full justify-between">
-              <input
-                type="text"
-                placeholder="Object 1"
-                className="card-input rounded-xl w-full md:w-6/12 m-1"
-                value={inputObject1}
-                onChange={(e) => setInputObject1(e.target.value)}
-              />
-              <input
-                type="text"
-                placeholder="Object 2"
-                className="card-input rounded-xl w-full md:w-6/12 m-1"
-                value={inputObject2}
-                onChange={(e) => setInputObject2(e.target.value)}
-              />
-            </div>
-            <div className="w-full mt-2">
-              <button
-                className="btn card-button rounded-xl w-full font-bold"
-                onClick={handleSubmit}
-              >
-                Generate Product
-              </button>
-            </div>
-            <div className="w-full mt-2">
-              <button
-                className="btn card-button rounded-xl w-full font-bold"
-                onClick={handleRandomSubmit}
-              >
-                Generate a Product For Me
-              </button>
-            </div>
-          </div>
-
-          <div
-            className="right-div flex flex-col items-center w-full md:w-1/2 mx-auto"
-            id="right-div"
-          >
-            <div className="flex flex-col md:flex-row w-full">
-              {loading && (
-                <p className="m-1 text-white font-bold">Loading...</p>
-              )}
-              {/* @ts-ignore */}
-              {(error as Error) && (
-                <p className="m-1 text-red font-bold">
-                  {(error as Error).message}
-                </p>
-              )}
-              {!object1 && !object2 && (
-                <p className="m-1 text-white font-bold">
-                  Enter two objects on the left and press Generate Product to
-                  watch Assistant API generate a new product idea!
-                </p>
-              )}
-              {object1 && object2 && (
-                <div className="m-1 text-white font-bold">
-                  <span>{` Object 1 is: `}</span>
-                  <span className="font-bold">{`${object1}`}</span>
-                  <br />
-                  <span>{` Object 2 is: `}</span>
-                  <span className="font-bold">{`${object2}`}</span>
+          {!data && (
+            <>
+              <div className="left-div flex flex-col items-center w-full md:w-1/2 mx-auto">
+                <div className="flex flex-col md:flex-row w-full justify-between">
+                  <input
+                    type="text"
+                    placeholder="Object 1"
+                    className="card-input rounded-xl w-full md:w-6/12 m-1"
+                    value={inputObject1}
+                    onChange={(e) => setInputObject1(e.target.value)}
+                  />
+                  <input
+                    type="text"
+                    placeholder="Object 2"
+                    className="card-input rounded-xl w-full md:w-6/12 m-1"
+                    value={inputObject2}
+                    onChange={(e) => setInputObject2(e.target.value)}
+                  />
                 </div>
-              )}
-              {data && (
-                <p className="m-1 text-white font-bold">{renderResults()} </p>
-              )}
+                <div className="w-full mt-2">
+                  <button
+                    className="btn card-button rounded-xl w-full font-bold"
+                    onClick={handleSubmit}
+                  >
+                    Generate Product
+                  </button>
+                </div>
+                <div className="w-full mt-2">
+                  <button
+                    className="btn card-button rounded-xl w-full font-bold"
+                    onClick={handleRandomSubmit}
+                  >
+                    Generate a Product For Me
+                  </button>
+                </div>
+              </div>
+
+              <div
+                className="right-div flex flex-col items-center w-full md:w-1/2 mx-auto pl-2 pr-2"
+                id="right-div"
+              >
+                <div className="flex flex-col w-full">
+                  {loading && (
+                    <div className="p-3">
+                      <Loader />
+                    </div>
+                  )}
+                  {/* @ts-ignore */}
+                  {(error as Error) && (
+                    <p className="m-1 text-red-500 font-bold">
+                      {(error as any).errorMessage}
+                    </p>
+                  )}
+
+                  {object1 && object2 && (
+                    <div className="m-1 text-white font-bold">
+                      <span>{` Object 1 is: `}</span>
+                      <span className="font-bold">{`${object1}`}</span>
+                      <br />
+                      <span>{` Object 2 is: `}</span>
+                      <span className="font-bold">{`${object2}`}</span>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </>
+          )}
+          {data && (
+            <div className="scrollable-content m-1 text-white font-bold flex-col">
+              <p className="">{data} </p>
+              <button
+                className="btn card-button rounded-xl w-full mt-2"
+                onClick={handleReset}
+              >
+                Try again
+              </button>
             </div>
-          </div>
+          )}
         </div>
       </div>
     </div>

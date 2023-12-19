@@ -62,3 +62,8 @@ code {
   font-size: 0.875rem;
   width: 100%;
 }
+
+.scrollable-content {
+  overflow-y: auto; /* Enables vertical scrolling */
+  max-height: 100%; /* Adjust this as needed */
+}
