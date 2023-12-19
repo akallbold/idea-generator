@@ -17,9 +17,9 @@ const useAssistantApi = () => {
           method: "POST",
           body: JSON.stringify({ object1, object2 }),
         });
-        const data = await response.json();
-        console.log("IN HOOK", data);
-        setData(data);
+        const res = await response.json();
+        console.log("IN HOOK", res);
+        setData(res);
       } catch (err) {
         setError(err);
       } finally {
