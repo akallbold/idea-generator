@@ -110,7 +110,7 @@ function App() {
               </div>
 
               <div
-                className="right-div flex flex-col items-center w-full md:w-1/2 mx-auto pl-2 pr-2"
+                className="right-div scrollable-content flex flex-col justify-center items-center w-full md:w-1/2 mx-auto pl-2 pr-2"
                 id="right-div"
               >
                 <div className="flex flex-col w-full">
