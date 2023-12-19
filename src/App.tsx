@@ -4,7 +4,8 @@ import useAssistantApi from "./hooks/useAssistant";
 import things from "./randomObjects";
 
 function App() {
-  const { data, submitObjects, loading, error } = useAssistantApi();
+  const { data, setData, submitObjects, loading, error, setError } =
+    useAssistantApi();
   const [inputObject1, setInputObject1] = useState<string | undefined>("");
   const [inputObject2, setInputObject2] = useState<string | undefined>("");
   const [object1, setObject1] = useState<string | undefined>("");
@@ -15,6 +16,15 @@ function App() {
     if (data) {
       return <span className="font-bold">{`${data}`}</span>;
     }
+  };
+
+  const handleReset = (): void => {
+    setData(null);
+    setError(null);
+    setObject1("");
+    setObject2("");
+    setInputObject1("");
+    setInputObject2("");
   };
 
   const handleKeyPress = (event: any) => {
@@ -33,6 +43,7 @@ function App() {
   }, []);
 
   const handleSubmit = () => {
+    setError(null);
     setObject1(inputObject1);
     setObject2(inputObject2);
     if (inputObject1 && inputObject2) {
@@ -42,6 +53,7 @@ function App() {
     }
   };
   const handleRandomSubmit = () => {
+    setError(null);
     let randomObject1;
     let randomObject2;
     while (randomObject1 === randomObject2) {
@@ -60,7 +72,7 @@ function App() {
   const randomObjectPicker = () => {
     return things[Math.floor(Math.random() * things.length)];
   };
-
+  console.log("error on app page", error);
   return (
     <div className="h-screen flex items-center justify-center">
       <div className="app-bg absolute top-0 left-0 w-full h-full bg-cover bg-center blur scale-120"></div>
@@ -113,7 +125,9 @@ function App() {
               )}
               {/* @ts-ignore */}
               {(error as Error) && (
-                <p className="m-1 text-red font-bold">error</p>
+                <p className="m-1 text-red font-bold">
+                  {(error as Error).message}
+                </p>
               )}
               {!object1 && !object2 && (
                 <p className="m-1 text-white font-bold">
