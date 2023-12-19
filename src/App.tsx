@@ -4,7 +4,7 @@ import useAssistantApi from "./hooks/useAssistant";
 import things from "./randomObjects";
 
 function App() {
-  const { data, submitObjects, loading } = useAssistantApi();
+  const { data, submitObjects, loading, error } = useAssistantApi();
   const [inputObject1, setInputObject1] = useState<string | undefined>("");
   const [inputObject2, setInputObject2] = useState<string | undefined>("");
   const [object1, setObject1] = useState<string | undefined>("");
@@ -110,6 +110,10 @@ function App() {
             <div className="flex flex-col md:flex-row w-full">
               {loading && (
                 <p className="m-1 text-white font-bold">Loading...</p>
+              )}
+              {/* @ts-ignore */}
+              {(error as Error) && (
+                <p className="m-1 text-red font-bold">error</p>
               )}
               {!object1 && !object2 && (
                 <p className="m-1 text-white font-bold">
