@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import useAssistantApi from "./hooks/useAssistant";
 import things from "./randomObjects";
-import Loader from "./Loader";
+import Overlay from "./Overlay";
 
 function App() {
   const { data, setData, submitObjects, loading, error, setError } =
@@ -69,9 +69,9 @@ function App() {
     <div className="h-screen flex items-center justify-center">
       <div className="app-bg absolute top-0 left-0 w-full h-full bg-cover bg-center blur scale-120"></div>
       <div className="card w-3/4 h-3/4 bg-white shadow-2xl rounded-xl md:filter-none relative">
-        <div className="card-top h-1/2 bg-no-repeat bg-contain bg-center"></div>
+        <div className="card-top h-1/2 bg-no-repeat bg-contain bg-center top-border-radius"></div>
 
-        <div className="card-bottom h-1/2 flex flex-col md:flex-row">
+        <div className="card-bottom bottom-border-radius scrollable-content h-1/2 flex flex-col md:flex-row">
           {!data && (
             <>
               <div className="left-div flex flex-col items-center w-full md:w-1/2 mx-auto">
@@ -110,44 +110,33 @@ function App() {
               </div>
 
               <div
-                className="right-div scrollable-content flex flex-col justify-center items-center w-full md:w-1/2 mx-auto pl-2 pr-2"
+                className="right-div flex flex-col justify-center items-center w-full md:w-1/2 mx-auto pl-2 pr-2"
                 id="right-div"
               >
                 <div className="flex flex-col w-full">
-                  {loading && (
-                    <div className="p-3">
-                      <Loader />
-                    </div>
-                  )}
                   {/* @ts-ignore */}
                   {(error as Error) && (
                     <p className="m-1 text-red-500 font-bold">
                       {(error as any).errorMessage}
                     </p>
                   )}
-
-                  {object1 && object2 && (
-                    <div className="m-1 text-white font-bold">
-                      <span>{` Object 1 is: `}</span>
-                      <span className="font-bold">{`${object1}`}</span>
-                      <br />
-                      <span>{` Object 2 is: `}</span>
-                      <span className="font-bold">{`${object2}`}</span>
-                    </div>
+                  {loading && object1 && object2 && (
+                    <Overlay object1={object1} object2={object2} />
                   )}
                 </div>
               </div>
             </>
           )}
           {data && (
-            <div className="scrollable-content m-1 text-white font-bold flex-col">
+            <div className="m-2 text-white font-bold flex-col">
               <p className="">{data} </p>
               <button
-                className="btn card-button rounded-xl w-full mt-2"
+                className="btn card-button rounded-xl w-full mt-2 mb-2"
                 onClick={handleReset}
               >
                 Try again
               </button>
+              <div className="p-2"></div>
             </div>
           )}
         </div>
