@@ -6,7 +6,7 @@ const things = [
   "coffee mug",
   "vacuum",
   "toothbrush",
-  "oil filter",
+  "filter",
   "drivers license",
   "remote control",
   "iPad stand",
@@ -16,6 +16,12 @@ const things = [
   "soda can",
   "pill",
   "robot",
+  "branch",
+  "candle",
+  "goggles",
+  "earbuds",
+  "robot",
+  "skeleton",
 ];
 
 export default things;
