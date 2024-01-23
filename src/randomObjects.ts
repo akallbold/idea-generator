@@ -22,6 +22,8 @@ const things = [
   "earbuds",
   "robot",
   "skeleton",
+  "match",
+  "computer",
 ];
 
 export default things;

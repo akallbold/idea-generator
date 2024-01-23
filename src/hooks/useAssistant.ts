@@ -20,8 +20,7 @@ const useAssistantApi = () => {
         if (res.errorType) {
           setError(res);
         } else {
-          const formattedResponse = formatResponse(res.message);
-          setData(formattedResponse);
+          setData(res.message);
         }
       } catch (err) {
         setError(err);
@@ -31,16 +30,6 @@ const useAssistantApi = () => {
     }
   };
 
-  const formatResponse = (
-    responseMessages: OpenAI.Beta.Threads.Messages.ThreadMessagesPage[]
-  ): string => {
-    let assistantResponse = responseMessages.filter((msg) => {
-      // @ts-ignore
-      return msg.role === "assistant";
-    })[0];
-    // @ts-ignore
-    return assistantResponse.content[0].text.value;
-  };
 
   return { data, setData, loading, error, setError, submitObjects };
 };
