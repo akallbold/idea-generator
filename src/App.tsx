@@ -65,6 +65,7 @@ function App() {
   const randomObjectPicker = () => {
     return things[Math.floor(Math.random() * things.length)];
   };
+  console.log({error})
   return (
     <div className="h-screen flex items-center justify-center">
       <div className="app-bg absolute top-0 left-0 w-full h-full bg-cover bg-center blur scale-120"></div>
@@ -114,8 +115,7 @@ function App() {
                 id="right-div"
               >
                 <div className="flex flex-col w-full">
-                  {/* @ts-ignore */}
-                  {(error as Error) && (
+                  {(error as any) && (
                     <p className="m-1 text-red-500 font-bold">
                       {(error as any).errorMessage}
                     </p>
