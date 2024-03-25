@@ -1,5 +1,4 @@
 import { useState } from "react";
-import OpenAI from "openai";
 
 const ideaGeneratorBackend = process.env.REACT_APP_IDEA_GENERATOR_BACKEND;
 
