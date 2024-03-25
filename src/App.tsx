@@ -64,7 +64,6 @@ function App() {
   const randomObjectPicker = () => {
     return things[Math.floor(Math.random() * things.length)];
   };
-  console.log({error})
   return (
     <div className="h-screen flex items-center justify-center">
       <div className="app-bg absolute top-0 left-0 w-full h-full bg-cover bg-center blur scale-120"></div>
