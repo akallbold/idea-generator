@@ -16,6 +16,7 @@ const useAssistantApi = () => {
           body: JSON.stringify({ object1, object2 }),
         });
         const res = await response.json();
+        console.log({res})
         if (res.errorType) {
           setError(res);
         } else {
