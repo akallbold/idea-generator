@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import "./App.css";
 import useAssistantApi from "./hooks/useAssistant";
 import things from "./randomObjects";
 import Overlay from "./Overlay";

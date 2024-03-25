@@ -1,5 +1,4 @@
 import { FC } from "react";
-import "./App.css";
 import Loader from "./Loader";
 
 // Define types for the Overlay component props
