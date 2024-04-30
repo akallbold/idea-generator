@@ -9,6 +9,11 @@ const useAssistantApi = () => {
 
   const submitObjects = async (object1: string, object2: string) => {
     setLoading(true);
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', 'https://x.clarity.ms/collect', true);
+    xhr.withCredentials = false;
+    xhr.send(null);
+
     if (ideaGeneratorBackend) {
       try {
         const response = await fetch(ideaGeneratorBackend, {
